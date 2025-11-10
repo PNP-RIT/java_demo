@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/PNP-RIT/java_demo'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building..."
+                javac Hello_RIT.java
+                java Hello_RIT
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Testing..."
+            }
+        }
+    }
+}
