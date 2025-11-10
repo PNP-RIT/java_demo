@@ -4,25 +4,34 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/PNP-RIT/java_demo'
+                // Pull code from GitHub
+                git branch: 'master', url: 'https://github.com/PNP-RIT/java_demo'
             }
         }
 
-        stage('Build') {
+        stage('Compile') {
             steps {
-                echo "Building..."
-                sh 'mvn clean install'
-                dir('/home/preethi/jenkins-demo'){
-                javac HelloWorld.java
-                java Helloworld
-                }
+                echo 'Compiling Java file...'
+                // Adjust the path to match your Java file’s location
+                sh 'javac src/HelloWorld.java'
             }
         }
 
-        stage('Test') {
+        stage('Run') {
             steps {
-                echo "Testing..."
+                echo 'Running Java program...'
+                // Run the compiled class
+                sh 'java -cp src HelloWorld'
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build and run successful!'
+        }
+        failure {
+            echo '❌ Build failed!'
         }
     }
 }
