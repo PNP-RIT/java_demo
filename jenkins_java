@@ -11,6 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building..."
+                cd /home/preethi/jenkins-demo
                 javac Hello_RIT.java
                 java Hello_RIT
             }
