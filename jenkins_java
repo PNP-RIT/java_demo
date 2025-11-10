@@ -1,16 +1,21 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'JDK17'   // Must match the name configured in Jenkins
+    }
+
     stages {
         stage('Checkout') {
             steps {
+                // Clone your GitHub repo
                 git branch: 'master', url: 'https://github.com/PNP-RIT/java_demo'
             }
         }
 
         stage('Compile') {
             steps {
-                echo 'Compiling Java file...'
+                echo 'Compiling Java program...'
                 sh 'javac HelloWorld.java'
             }
         }
@@ -25,10 +30,10 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build and run successful!'
+            echo 'Build and execution successful!'
         }
         failure {
-            echo '❌ Build failed!'
+            echo 'Build failed!'
         }
     }
 }
