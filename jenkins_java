@@ -13,8 +13,8 @@ pipeline {
                 echo "Building..."
                 sh 'mvn clean install'
                 dir('/home/preethi/jenkins-demo'){
-                javac Hello_RIT.java
-                java Hello_RIT
+                javac HelloWorld.java
+                java Helloworld
                 }
             }
         }
