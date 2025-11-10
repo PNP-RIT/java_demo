@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Pull code from GitHub
                 git branch: 'master', url: 'https://github.com/PNP-RIT/java_demo'
             }
         }
@@ -12,16 +11,14 @@ pipeline {
         stage('Compile') {
             steps {
                 echo 'Compiling Java file...'
-                // Adjust the path to match your Java file’s location
-                sh 'javac src/HelloWorld.java'
+                sh 'javac HelloWorld.java'
             }
         }
 
         stage('Run') {
             steps {
                 echo 'Running Java program...'
-                // Run the compiled class
-                sh 'java -cp src HelloWorld'
+                sh 'java HelloWorld'
             }
         }
     }
@@ -35,3 +32,4 @@ pipeline {
         }
     }
 }
+
